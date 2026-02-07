@@ -12,7 +12,7 @@ export default function RegisterPage() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -40,16 +40,14 @@ export default function RegisterPage() {
 
   return (
     <div className="register-page">
- 
-
-   
       <div className="register-card">
-        
         <button className="btn-back" onClick={() => router.back()}>
           ← Назад
         </button>
         <h2 className="register-card-title">Создать аккаунт</h2>
-        <p className="register-card-description">Зарегистрируйтесь в NeuroSchool</p>
+        <p className="register-card-description">
+          Зарегистрируйтесь в NeuroSchool
+        </p>
 
         {error && <p className="error-text">{error}</p>}
 

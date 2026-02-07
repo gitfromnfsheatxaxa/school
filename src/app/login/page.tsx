@@ -7,7 +7,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setTimeout(() => setLoading(false), 1000); // demo loader effect
@@ -15,17 +15,16 @@ export default function LoginPage() {
 
   return (
     <div className="login-page">
-    
-
-   
       <div className="login-card">
         <button className="btn-back" onClick={() => router.back()}>
           ← Назад
         </button>
-        
+
         <div className="login-card-header">
           <h2 className="login-card-title">NeuroSchool</h2>
-          <p className="login-card-description">Войдите в свою учетную запись</p>
+          <p className="login-card-description">
+            Войдите в свою учетную запись
+          </p>
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -50,7 +49,6 @@ export default function LoginPage() {
               disabled={loading}
             />
           </div>
-
 
           <button type="submit" className="btn-submit" disabled={loading}>
             {loading && <span className="loader"></span>}
