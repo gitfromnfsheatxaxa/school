@@ -38,9 +38,7 @@ export default function CoursesPage() {
     alert("Selected course ID: " + id);
   };
 
-  const handleLogin = () => {
-    alert("Redirect to login page");
-  };
 
-  return <CourseCatalog onSelectCourse={handleSelectCourse} onLogin={handleLogin} courses={courses} />;
+
+  return <CourseCatalog onSelectCourse={handleSelectCourse} courses={courses} />;
 }
