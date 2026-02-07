@@ -1,0 +1,164 @@
+/* Основной контейнер Navbar */
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    font-size: 0.875rem;
+    /* uniform font size */
+    font-weight: 500;
+    /* uniform font weight */
+    white-space: nowrap;
+    /* prevent wrapping */
+    font-family: Arial, sans-serif;
+    /* or any font you want */
+}
+
+/* Контейнер элементов */
+.navbar-container {
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Логотип */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: black;
+}
+
+.logo-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: linear-gradient(135deg, #9811FA, #3b82f6);
+    border-radius: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* Ссылки для десктопа */
+.nav-links {
+    display: none;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    transition: color 0.2s, background-color 0.2s;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: block;
+    font-size: 0.875rem;
+    /* uniform font */
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* hover и активная ссылка */
+.nav-link:hover {
+    background-color: #ECECF0;
+}
+
+.nav-link.active {
+    background-color: #ECECF0;
+}
+
+/* Кнопки для десктопа */
+.nav-buttons {
+    display: none;
+    gap: 1rem;
+}
+
+.btn-login,
+.btn-signup {
+    font-size: 0.875rem;
+    /* uniform font */
+    font-weight: 500;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-login {
+    border: 1px solid #E5E5E5;
+    color: #000;
+}
+
+.btn-login:hover {
+    background: #ECECF0;
+}
+
+.btn-signup {
+    background: #000;
+    color: white;
+}
+
+.btn-signup:hover {
+    background: #E5E5E5;
+    color: #000;
+}
+
+.btn-login:disabled,
+.btn-signup:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Кнопка гамбургера */
+.hamburger {
+    display: block;
+    background: none;
+    border: 1px solid #E5E5E5;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Мобильное меню */
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #ddd;
+}
+
+/* Адаптивные стили */
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex;
+    }
+
+    .nav-buttons {
+        display: flex;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: none !important;
+    }
+}
