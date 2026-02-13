@@ -1,3 +1,5 @@
+import PriceCatalog from "@/components/PriceCatalog/PriceCatalog";
+
 export default function PricingPage() {
-  return <h1 >Pricing Page</h1>
+  return <PriceCatalog />;
 }
