@@ -1,97 +1,63 @@
 "use client";
 
-import "./PriceCatalog.css";
 import Link from "next/link";
+import { Check, Star } from "lucide-react";
+import { useTranslation } from "@/i18n/provider";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/Motion";
+import "./PriceCatalog.css";
 
 export default function PriceCatalog() {
-    const plans = [
-        {
-            name: "Бесплатный",
-            price: "₽0",
-            period: "месяц",
-            features: [
-                "Доступ к бесплатным курсам",
-                "Базовая панель студента",
-                "Поддержка сообщества",
-            ],
-            button: "Начать бесплатно",
-            highlight: false,
-        },
-        {
-            name: "Базовый",
-            price: "₽799",
-            period: "месяц",
-            features: [
-                "Все возможности бесплатного плана",
-                "Доступ к премиум-курсам",
-                "Отслеживание прогресса",
-            ],
-            button: "Выбрать",
-            highlight: false,
-        },
-        {
-            name: "Профессиональный",
-            price: "₽2499",
-            period: "месяц",
-            features: [
-                "Все функции базового плана",
-                "Сертификаты",
-                "Персональный наставник",
-                "Приоритетная поддержка",
-            ],
-            button: "Стать PRO",
-            highlight: true,
-        },
-        {
-            name: "Корпоративный",
-            price: "₽8999",
-            period: "месяц",
-            features: [
-                "Неограниченный доступ",
-                "Командные аккаунты",
-                "Админ панель",
-                "Персональный менеджер",
-            ],
-            button: "Связаться с нами",
-            highlight: false,
-        },
-    ];
+  const { t, dict } = useTranslation();
 
-    return (
-        <section className="pricing">
-            <h2 className="pricing-title">Тарифные планы</h2>
-            <p className="pricing-subtitle">Выберите подходящий тариф</p>
+  return (
+    <section className="pricing ns-section">
+      <div className="ns-container">
+        <Reveal className="pricing-head">
+          <span className="ns-eyebrow">{t("pricing.eyebrow")}</span>
+          <h1>{t("pricing.title")}</h1>
+          <p>{t("pricing.subtitle")}</p>
+        </Reveal>
 
-            <div className="pricing-grid">
-                {plans.map((plan, i) => (
-                    <div
-                        key={i}
-                        className={`pricing-card ${plan.highlight ? "highlight" : ""}`}
-                    >
-                        <h3>{plan.name}</h3>
+        <Stagger className="pricing-grid" amount={0.05}>
+          {dict.pricing.plans.map((plan) => (
+            <StaggerItem
+              key={plan.id}
+              className={`pricing-card ${plan.highlight ? "is-highlight" : ""}`}
+            >
+              {plan.highlight && (
+                <span className="pricing-tag">
+                  <Star size={13} aria-hidden /> {t("pricing.popular")}
+                </span>
+              )}
 
-                        <div className="price">
-                            {plan.price}
-                            <span> / {plan.period}</span>
-                        </div>
+              <h3>{plan.name}</h3>
 
-                        <ul>
-                            {plan.features.map((f, idx) => (
-                                <li key={idx}>✓ {f}</li>
-                            ))}
-                        </ul>
+              <div className="pricing-price">
+                {plan.price}
+                <span>
+                  {" "}
+                  / {t("pricing.period")}
+                </span>
+              </div>
 
-                        <Link
-                            href={`/payment?plan=${encodeURIComponent(
-                                plan.name
-                            )}&price=${encodeURIComponent(plan.price)}`}
-                            className="pricing-btn"
-                        >
-                            {plan.button}
-                        </Link>
-                    </div>
+              <ul className="pricing-feats">
+                {plan.features.map((f) => (
+                  <li key={f}>
+                    <Check size={16} aria-hidden /> {f}
+                  </li>
                 ))}
-            </div>
-        </section>
-    );
+              </ul>
+
+              <Link
+                href={`/payment?plan=${encodeURIComponent(plan.name)}&price=${encodeURIComponent(plan.price)}`}
+                className={`ns-btn ${plan.highlight ? "ns-btn-accent" : "ns-btn-primary"} pricing-btn`}
+              >
+                {plan.button}
+              </Link>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </div>
+    </section>
+  );
 }

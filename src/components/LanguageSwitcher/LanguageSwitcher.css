@@ -1,0 +1,83 @@
+.lang {
+  position: relative;
+}
+
+.lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--r-full);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.lang-trigger:hover {
+  background: var(--surface-2);
+}
+
+.lang--dark .lang-trigger {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--line-dark);
+  color: var(--on-dark);
+}
+.lang--dark .lang-trigger:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 180px;
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 80;
+  transform-origin: top right;
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--ink);
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.lang-item:hover {
+  background: var(--surface-2);
+}
+
+.lang-item.is-active {
+  background: var(--surface-2);
+  font-weight: 600;
+}
+
+.lang-item .lucide {
+  margin-left: auto;
+  color: var(--accent-strong);
+}
+
+.lang-flag {
+  font-size: 1.05rem;
+  line-height: 1;
+}

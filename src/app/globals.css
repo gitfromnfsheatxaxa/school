@@ -1,8 +1,265 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* ============================================================
+   NeuroSchool — Design System
+   Editorial "Ink + Electric Lime" palette. No purple gradients,
+   no default Inter, layered surfaces, intentional typography.
+   ============================================================ */
+
+:root {
+  /* Surfaces */
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --surface-2: #f3f2ec;
+  --ink-bg: #15171f; /* dark sections */
+  --ink-bg-2: #1d2029;
+
+  /* Text */
+  --ink: #14151a;
+  --ink-soft: #3c3e47;
+  --muted: #6b6e78;
+  --on-dark: #f5f6f3;
+  --on-dark-muted: #a7abb4;
+
+  /* Brand accents */
+  --accent: #c6f24e; /* electric lime */
+  --accent-strong: #a9d92f;
+  --accent-ink: #14151a; /* text on lime */
+  --coral: #ff6b5e; /* warm secondary */
+  --coral-soft: #ffe7e3;
+
+  /* Lines / shadows */
+  --line: rgba(20, 21, 26, 0.1);
+  --line-strong: rgba(20, 21, 26, 0.16);
+  --line-dark: rgba(255, 255, 255, 0.12);
+  --shadow-sm: 0 1px 2px rgba(16, 18, 28, 0.06);
+  --shadow-md: 0 10px 30px -12px rgba(16, 18, 28, 0.18);
+  --shadow-lg: 0 30px 60px -20px rgba(16, 18, 28, 0.28);
+
+  /* Radius */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-full: 999px;
+
+  /* Typography (set by next/font) */
+  --font-display: var(--font-sora), "Segoe UI", system-ui, sans-serif;
+  --font-body: var(--font-jakarta), "Segoe UI", system-ui, sans-serif;
+
+  /* Layout */
+  --maxw: 1240px;
+  --nav-h: 72px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  font-family: sans-serif;
   margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  color: var(--ink);
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ---------- Layout helpers ---------- */
+.ns-container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+.ns-section {
+  padding-block: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+.ns-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ns-eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: var(--accent-strong);
+  border-radius: 2px;
+}
+
+/* ---------- Buttons ---------- */
+.ns-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1;
+  padding: 0.9rem 1.4rem;
+  border-radius: var(--r-full);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.18s ease, background 0.18s ease,
+    box-shadow 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  white-space: nowrap;
+}
+
+.ns-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ns-btn-primary {
+  background: var(--ink);
+  color: var(--on-dark);
+}
+.ns-btn-primary:hover {
+  background: #000;
+  box-shadow: var(--shadow-md);
+}
+
+.ns-btn-accent {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.ns-btn-accent:hover {
+  background: var(--accent-strong);
+  box-shadow: 0 10px 24px -10px rgba(169, 217, 47, 0.7);
+}
+
+.ns-btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+.ns-btn-ghost:hover {
+  background: var(--surface-2);
+}
+
+.ns-btn-on-dark {
+  background: transparent;
+  color: var(--on-dark);
+  border-color: var(--line-dark);
+}
+.ns-btn-on-dark:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ns-btn-lg {
+  padding: 1.05rem 1.7rem;
+  font-size: 1rem;
+}
+
+/* ---------- Badge / pill ---------- */
+.ns-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--r-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--surface-2);
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+
+/* ---------- Cards ---------- */
+.ns-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Inputs ---------- */
+.ns-field {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.ns-field::placeholder {
+  color: var(--muted);
+}
+.ns-field:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 4px rgba(20, 21, 26, 0.08);
+}
+
+/* ---------- Decorative dotted grid background ---------- */
+.ns-dots {
+  background-image: radial-gradient(
+    var(--line-strong) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }

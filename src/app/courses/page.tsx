@@ -1,44 +1,36 @@
 "use client";
-import CourseCatalog from "@/components/CourseCatalog/CourseCatalog";
+
+import { useRouter } from "next/navigation";
+import CourseCatalog, {
+  type Course,
+} from "@/components/CourseCatalog/CourseCatalog";
+import { useTranslation } from "@/i18n/provider";
+
+const IMAGES = [
+  "/img/photo-1434030216411-0b793f4b4173.jpg",
+  "/img/photo-1516534775068-ba3e7458af70.jpg",
+  "/img/photo-1559757175-0eb30cd8c063.jpg",
+];
 
 export default function CoursesPage() {
-  const courses = [
-    {
-      id: "1",
-      title: "React Basics",
-      description: "Learn React from scratch",
-      image_url: "../../../public/img/photo-1434030216411-0b793f4b4173.jpg",
-      level: "beginner",
-      category: "Frontend",
-      duration_weeks: 6,
-      price_uzs: 1200000,
-    },
-    {
-      id: "2",
-      title: "Python Basics",
-      description: "Learn React from scratch",
-      image_url: "../../../public/img/photo-1434030216411-0b793f4b4173.jpg",
-      level: "beginner",
-      category: "Backend",
-      duration_weeks: 6,
-      price_uzs: 1200000,
-    },
-    {
-      id: "3",
-      title: "React Basics",
-      description: "Learn React from scratch",
-      image_url: "../../../public/img/photo-1434030216411-0b793f4b4173.jpg",
-      level: "beginner",
-      category: "Frontend",
-      duration_weeks: 6,
-      price_uzs: 1200000,
-    },
-  ];
-  const handleSelectCourse = (id: string) => {
-    alert("Selected course ID: " + id);
-  };
+  const router = useRouter();
+  const { dict } = useTranslation();
 
+  const courses: Course[] = dict.courses.samples.map((c, i) => ({
+    id: c.id,
+    title: c.title,
+    desc: c.desc,
+    category: c.category,
+    level: c.level,
+    durationWeeks: c.durationWeeks,
+    priceUzs: c.priceUzs,
+    image: IMAGES[i % IMAGES.length],
+  }));
 
-
-  return <CourseCatalog onSelectCourse={handleSelectCourse} courses={courses} />;
+  return (
+    <CourseCatalog
+      courses={courses}
+      onSelectCourse={(id) => router.push(`/courses/${id}`)}
+    />
+  );
 }

@@ -1,164 +1,148 @@
-/* Основной контейнер Navbar */
-.navbar {
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    font-size: 0.875rem;
-    /* uniform font size */
-    font-weight: 500;
-    /* uniform font weight */
-    white-space: nowrap;
-    /* prevent wrapping */
-    font-family: Arial, sans-serif;
-    /* or any font you want */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 70;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--line);
 }
 
-/* Контейнер элементов */
-.navbar-container {
-    max-width: 2000px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.nav-inner {
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-/* Логотип */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    color: black;
+/* ---------- Logo ---------- */
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--ink);
 }
 
-.logo-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    background: linear-gradient(135deg, #9811FA, #3b82f6);
-    border-radius: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
+.nav-logo-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  box-shadow: inset 0 0 0 2px rgba(198, 242, 78, 0.25);
 }
 
-/* Ссылки для десктопа */
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.12rem;
+  letter-spacing: -0.02em;
+}
+.nav-logo-text b {
+  font-weight: 800;
+}
+
+/* ---------- Desktop links ---------- */
 .nav-links {
-    display: none;
-    gap: 1.5rem;
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+  margin-inline: auto;
 }
 
 .nav-link {
-    text-decoration: none;
-    color: black;
-    transition: color 0.2s, background-color 0.2s;
-    padding: 10px 20px;
-    border-radius: 10px;
-    display: block;
-    font-size: 0.875rem;
-    /* uniform font */
-    font-weight: 500;
-    white-space: nowrap;
+  position: relative;
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--r-full);
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition: color 0.18s ease, background 0.18s ease;
 }
-
-/* hover и активная ссылка */
 .nav-link:hover {
-    background-color: #ECECF0;
+  color: var(--ink);
+  background: var(--surface-2);
+}
+.nav-link.is-active {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+.nav-link.is-active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  transform: translateX(-50%);
 }
 
-.nav-link.active {
-    background-color: #ECECF0;
+.nav-actions {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+}
+.nav-cta {
+  padding: 0.6rem 1.05rem;
+  font-size: 0.88rem;
 }
 
-/* Кнопки для десктопа */
-.nav-buttons {
-    display: none;
-    gap: 1rem;
+/* ---------- Burger ---------- */
+.nav-burger {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
 }
 
-.btn-login,
-.btn-signup {
-    font-size: 0.875rem;
-    /* uniform font */
-    font-weight: 500;
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background 0.2s;
+/* ---------- Mobile menu ---------- */
+.nav-mobile {
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.nav-mobile-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-block: 1rem 1.4rem;
+}
+.nav-mobile-link {
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.nav-mobile-link:hover,
+.nav-mobile-link.is-active {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+.nav-mobile-row {
+  padding: 0.3rem 0;
 }
 
-.btn-login {
-    border: 1px solid #E5E5E5;
-    color: #000;
-}
-
-.btn-login:hover {
-    background: #ECECF0;
-}
-
-.btn-signup {
-    background: #000;
-    color: white;
-}
-
-.btn-signup:hover {
-    background: #E5E5E5;
-    color: #000;
-}
-
-.btn-login:disabled,
-.btn-signup:disabled {
-    pointer-events: none;
-    opacity: 0.5;
-}
-
-/* Кнопка гамбургера */
-.hamburger {
-    display: block;
-    background: none;
-    border: 1px solid #E5E5E5;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 1.25rem;
-    cursor: pointer;
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-/* Мобильное меню */
-.mobile-menu {
+@media (min-width: 880px) {
+  .nav-links,
+  .nav-actions {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    border-top: 1px solid #ddd;
-}
-
-/* Адаптивные стили */
-@media (min-width: 768px) {
-    .nav-links {
-        display: flex;
-    }
-
-    .nav-buttons {
-        display: flex;
-    }
-
-    .hamburger {
-        display: none;
-    }
-
-    .mobile-menu {
-        display: none !important;
-    }
+  }
+  .nav-burger {
+    display: none;
+  }
 }
